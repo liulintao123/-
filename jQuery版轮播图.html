@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播图</title>
+	<style>
+	*{margin: 0;padding: 0;}
+	 ul{ list-style: none; }
+        a{ text-decoration: none;}
+        #warp{ width: 800px; height: 600px; margin: 20px auto;}
+        .cont{ width: 100%; height: 100%; overflow: hidden; position: relative;}
+        .imglist{ width: 4800px; position: absolute; z-index: 5;}
+        .imglist>li{ float: left; width: 800px; height: 600px;}
+        .imglist>li>img{ width: 100%; height: 100%;}
+        .prev,.next{ position: absolute; top: 275px; background: rgba(220,220,220,0.7);padding: 10px 0; z-index: 100; opacity: 0.6;}
+        .prev:hover,.next:hover{ cursor: pointer; opacity: 1;}
+        .prev{ left: 10px; }
+        .next{ right: 10px;}
+	</style> 
+</head>
+<body>
+	<div id="warp">
+        <div class="cont">
+            <ul class="imglist">
+                <li><img src="./images/1.jpg" alt=""></li>
+                <li><img src="./images/2.jpg" alt=""></li>
+                <li><img src="./images/3.jpg" alt=""></li>
+                <li><img src="./images/4.jpg" alt=""></li>
+                <li><img src="./images/5.jpg" alt=""></li>
+                <li><img src="./images/6.jpg" alt=""></li>
+            </ul>
+            <img src="./images/l.png"  class="prev">
+            <img src="./images/r.png"  class="next">
+        </div> 
+    </div>
+    <script src="jQuery-2.1.4.min.js"></script>
+    <script>
+    	var n=0
+  		var Change=$(".next").click(function(){ 			/*左键点击*/
+	        if(n<$(".imglist li").length-1){ 
+	            n++; 
+	        }else{ 
+	            n=0;
+	        }
+	        //调用变换处理函数
+	        changeTo(n);  
+		})
+		function changeTo(num){ 							/*封装函数*/
+		        $(".imglist").find("li").removeClass("imgOn").hide().eq(num).fadeIn().addClass("imgOn");
+		    }
+            Change=$(".prev").click(function(){			/*右键点击*/
+                if(n<$(".imglist li").length-1){ 
+                    n++; 
+                }else{ 
+                    n=0;
+                }
+                //调用变换处理函数
+                changeTo(n);  
+            })    
+    </script>
+</body>
+</html>
